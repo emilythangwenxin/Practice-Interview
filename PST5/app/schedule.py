@@ -34,3 +34,9 @@ class ScheduleManager:
         
         with open(self.file_path, 'w', encoding='utf-8') as f:
             json.dump(data_to_save, f, indent=4)
+
+        try:
+            with open(self.file_path, 'w', encoding='utf-8') as f:
+                json.dump(data_to_save, f, indent=4)
+        except IOError as e:
+            print(f"Error saving data to file: {e}")
