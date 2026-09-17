@@ -26,9 +26,11 @@ class ScheduleManager:
             print("Data file not found. Starting with a clean state.")
     
     def _save_data(self):
-        """Converts object lists back to dictionaries and saves to JSON."""
-        # The logic here remains the same.
-        # TODO: Create a 'data_to_save' dictionary.
-        # Convert self.students, self.teachers, and self.courses into lists of dictionaries.
-        # Write the result to the JSON file.
-        pass
+        data_to_save = {
+            "students": [student.to_dict() for student in self.students],
+            "teachers": [teacher.to_dict() for teacher in self.teachers],
+            "courses": [course.to_dict() for course in self.courses]
+        }
+        
+        with open(self.file_path, 'w', encoding='utf-8') as f:
+            json.dump(data_to_save, f, indent=4)
